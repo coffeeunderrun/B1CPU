@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace B1CPU.Core.Flags
 {
-    public class FlagRepository : List<IFlag>, IFlagRepository
+    public sealed class FlagRepository : List<IFlag>, IFlagRepository
     {
         public IFlag this[string name] => this.FirstOrDefault(x => x.Name.Equals(name,
             StringComparison.CurrentCultureIgnoreCase));

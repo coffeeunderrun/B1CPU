@@ -1,6 +1,6 @@
 ﻿namespace B1CPU.Core.Flags
 {
-    public class Flag : IFlag
+    public sealed class Flag : IFlag
     {
         public string Name { get; }
 

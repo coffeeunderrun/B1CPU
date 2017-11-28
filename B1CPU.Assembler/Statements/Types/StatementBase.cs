@@ -2,14 +2,8 @@
 {
     public abstract class StatementBase : IStatement
     {
-        public IStatement Previous { get; }
+        public IStatement Previous { get; set; }
 
-        public IStatement Next { get; }
-
-        protected StatementBase(IStatement previous, IStatement next)
-        {
-            Previous = previous;
-            Next = next;
-        }
+        public IStatement Next { get; set; }
     }
 }

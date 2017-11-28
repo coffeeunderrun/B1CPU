@@ -2,13 +2,7 @@
 
 namespace B1CPU.Assembler.Statements
 {
-    public class StatementRepository : IStatementRepository
+    public sealed class StatementRepository : List<IStatement>, IStatementRepository
     {
-        public IList<IStatement> Statements { get; }
-
-        public StatementRepository()
-        {
-            Statements = new List<IStatement>();
-        }
     }
 }

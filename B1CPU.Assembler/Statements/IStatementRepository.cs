@@ -2,8 +2,7 @@
 
 namespace B1CPU.Assembler.Statements
 {
-    public interface IStatementRepository
+    public interface IStatementRepository : IList<IStatement>
     {
-        IList<IStatement> Statements { get; }
     }
 }

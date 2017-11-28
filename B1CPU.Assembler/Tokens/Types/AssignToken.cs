@@ -2,7 +2,7 @@
 
 namespace B1CPU.Assembler.Tokens.Types
 {
-    public class AssignToken : TokenBase<AssignToken>
+    public sealed class AssignToken : TokenBase<AssignToken>
     {
         private static readonly Regex TokenRegex = new Regex(@"^=|equ", RegexOptions.IgnoreCase);
 

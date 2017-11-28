@@ -6,7 +6,7 @@ using B1CPU.Core.Registers;
 
 namespace B1CPU.Core.Instructions
 {
-    public class InstructionRepository : List<IInstruction>, IInstructionRepository
+    public sealed class InstructionRepository : List<IInstruction>, IInstructionRepository
     {
         public InstructionRepository(IInstructionFactory factory, IRegisterRepository registerRepository,
             IFlagRepository flagRepository)

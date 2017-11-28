@@ -5,7 +5,7 @@ using B1CPU.Core.Registers;
 
 namespace B1CPU.Core.Instructions
 {
-    public class Instruction : IInstruction
+    public sealed class Instruction : IInstruction
     {
         public string Mnemonic { get; }
 

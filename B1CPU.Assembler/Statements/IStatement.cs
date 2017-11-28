@@ -2,8 +2,8 @@
 {
     public interface IStatement
     {
-        IStatement Previous { get; }
+        IStatement Previous { get; set; }
 
-        IStatement Next { get; }
+        IStatement Next { get; set; }
     }
 }

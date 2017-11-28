@@ -5,7 +5,7 @@ using Castle.Core.Logging;
 
 namespace B1CPU.Assembler.Assembler
 {
-    public class Assembler : IAssembler
+    public sealed class Assembler : IAssembler
     {
         private readonly ILogger _logger;
         private readonly ILexer _lexer;
