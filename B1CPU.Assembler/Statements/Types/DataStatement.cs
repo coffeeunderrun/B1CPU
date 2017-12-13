@@ -2,7 +2,7 @@
 
 namespace B1CPU.Assembler.Statements.Types
 {
-    public sealed class DataStatement : StatementBase, IDataStatement
+    public sealed class DataStatement : Statement, IDataStatement
     {
         public IList<byte> Data { get; }
 

@@ -1,14 +1,15 @@
 ﻿using System.Text.RegularExpressions;
+using B1CPU.Assembler.Factory;
 
 namespace B1CPU.Assembler.Tokens.Types
 {
-    public sealed class DefineToken : TokenBase<DefineToken>
+    public sealed class DefineToken : Token<DefineToken>
     {
         private static readonly Regex TokenRegex =
             new Regex(@"^db|dw|dd|dq|byte|word|dword|qword", RegexOptions.IgnoreCase);
 
-        public DefineToken(ITokenFactory tokenFactory, string content = "", int row = 0, int column = 0)
-            : base(tokenFactory, content, row, column)
+        public DefineToken(IFactory factory, string content, int row, int column)
+            : base(factory, content, row, column)
         {
         }
 

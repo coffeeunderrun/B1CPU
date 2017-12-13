@@ -1,6 +1,6 @@
-﻿namespace B1CPU.Assembler.Statements.Types
+﻿namespace B1CPU.Assembler.Statements
 {
-    public abstract class StatementBase : IStatement
+    public abstract class Statement : IStatement
     {
         public IStatement Previous { get; set; }
 

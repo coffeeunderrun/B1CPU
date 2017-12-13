@@ -1,13 +1,14 @@
 ﻿using System.Text.RegularExpressions;
+using B1CPU.Assembler.Factory;
 
 namespace B1CPU.Assembler.Tokens.Types
 {
-    public sealed class StringToken : TokenBase<StringToken>
+    public sealed class StringToken : Token<StringToken>
     {
         private static readonly Regex TokenRegex = new Regex(@"^""[^""]*""", RegexOptions.IgnoreCase);
 
-        public StringToken(ITokenFactory tokenFactory, string content = "", int row = 0, int column = 0)
-            : base(tokenFactory, content, row, column)
+        public StringToken(IFactory factory, string content, int row, int column)
+            : base(factory, content, row, column)
         {
         }
 

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace B1CPU.Core.Flags
+﻿namespace B1CPU.Core.Flags
 {
     public interface IFlag
     {

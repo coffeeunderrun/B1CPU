@@ -1,6 +1,6 @@
-﻿namespace B1CPU.Core.Registers.Types
+﻿namespace B1CPU.Core.Registers
 {
-    public abstract class RegisterBase : IRegister
+    public abstract class Register : IRegister
     {
         public string Name { get; }
 
@@ -8,7 +8,7 @@
 
         public bool IsWordSize { get; }
 
-        protected RegisterBase(string name, int selector = -1, bool isWordSize = false)
+        protected Register(string name, int selector, bool isWordSize)
         {
             Name = name;
             Selector = selector;

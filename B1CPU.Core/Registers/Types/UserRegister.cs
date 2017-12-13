@@ -1,8 +1,8 @@
 ﻿namespace B1CPU.Core.Registers.Types
 {
-    public sealed class UserRegister : RegisterBase
+    public sealed class UserRegister : Register
     {
-        public UserRegister(string name, int selector = -1, bool isWordSize = false)
+        public UserRegister(string name, int selector, bool isWordSize)
             : base(name, selector, isWordSize)
         {
         }

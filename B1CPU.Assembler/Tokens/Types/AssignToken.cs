@@ -1,13 +1,14 @@
 ﻿using System.Text.RegularExpressions;
+using B1CPU.Assembler.Factory;
 
 namespace B1CPU.Assembler.Tokens.Types
 {
-    public sealed class AssignToken : TokenBase<AssignToken>
+    public sealed class AssignToken : Token<AssignToken>
     {
         private static readonly Regex TokenRegex = new Regex(@"^=|equ", RegexOptions.IgnoreCase);
 
-        public AssignToken(ITokenFactory tokenFactory, string content = "", int row = 0, int column = 0)
-            : base(tokenFactory, content, row, column)
+        public AssignToken(IFactory factory, string content, int row, int column)
+            : base(factory, content, row, column)
         {
         }
 

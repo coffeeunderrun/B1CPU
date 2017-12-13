@@ -1,6 +1,7 @@
 ﻿using B1CPU.Assembler.Lexer;
 using B1CPU.Assembler.Parser;
 using B1CPU.Assembler.Statements;
+using B1CPU.Core.Repository;
 using Castle.Core.Logging;
 
 namespace B1CPU.Assembler.Assembler
@@ -10,14 +11,14 @@ namespace B1CPU.Assembler.Assembler
         private readonly ILogger _logger;
         private readonly ILexer _lexer;
         private readonly IParser _parser;
-        private readonly IStatementRepository _statementRepository;
+        private readonly IRepository<IStatement> _statements;
 
-        public Assembler(ILogger logger, ILexer lexer, IParser parser, IStatementRepository statementRepository)
+        public Assembler(ILogger logger, ILexer lexer, IParser parser, IRepository<IStatement> statements)
         {
             _logger = logger;
             _lexer = lexer;
             _parser = parser;
-            _statementRepository = statementRepository;
+            _statements = statements;
         }
 
         public bool Assemble(string input, string output)

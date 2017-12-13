@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using B1CPU.Core.Addressing;
 using B1CPU.Core.Flags;
 using B1CPU.Core.Registers;
 
@@ -12,7 +13,7 @@ namespace B1CPU.Core.Instructions
 
         byte Opcode { get; }
 
-        Addressing.Mode AddressingMode { get; }
+        AddressingMode AddressingMode { get; }
 
         IRegister Register { get; }
 

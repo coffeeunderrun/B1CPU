@@ -2,7 +2,7 @@
 
 namespace B1CPU.Assembler.Statements.Types
 {
-    public sealed class InstructionStatement : StatementBase, IInstructionStatement
+    public sealed class InstructionStatement : Statement, IInstructionStatement
     {
         public IInstruction Instruction { get; }
 

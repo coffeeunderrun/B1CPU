@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using B1CPU.Core.Addressing;
 using B1CPU.Core.Flags;
 using B1CPU.Core.Registers;
 
@@ -11,7 +12,7 @@ namespace B1CPU.Core.Instructions
 
         public byte Opcode { get; }
 
-        public Addressing.Mode AddressingMode { get; }
+        public AddressingMode AddressingMode { get; }
 
         public IRegister Register { get; }
 
@@ -21,8 +22,8 @@ namespace B1CPU.Core.Instructions
 
         public IList<string> Aliases { get; }
 
-        public Instruction(string mnemonic, byte opcode, Addressing.Mode addressingMode,
-            Action<byte, Addressing.Mode, IProcessorState> action, params string[] aliases)
+        public Instruction(string mnemonic, byte opcode, AddressingMode addressingMode,
+            Action<byte, AddressingMode, IProcessorState> action, params string[] aliases)
         {
             Mnemonic = mnemonic;
             Opcode = opcode;
@@ -31,16 +32,16 @@ namespace B1CPU.Core.Instructions
             Aliases = new List<string>(aliases);
         }
 
-        public Instruction(string mnemonic, byte opcode, Addressing.Mode addressingMode, IRegister register,
-            Action<byte, Addressing.Mode, IProcessorState> action, params string[] aliases)
-            : this(mnemonic + register.Name, (byte)(opcode + register.Selector), addressingMode, action, aliases)
+        public Instruction(string mnemonic, byte opcode, AddressingMode addressingMode, IRegister register,
+            Action<byte, AddressingMode, IProcessorState> action, params string[] aliases)
+            : this(mnemonic + register.Name, (byte) (opcode + register.Selector), addressingMode, action, aliases)
         {
             Register = register;
         }
 
-        public Instruction(string mnemonic, byte opcode, Addressing.Mode addressingMode, IFlag flag,
-            Action<byte, Addressing.Mode, IProcessorState> action, params string[] aliases)
-            : this(mnemonic + flag.Name, (byte)(opcode + flag.Selector), addressingMode, action, aliases)
+        public Instruction(string mnemonic, byte opcode, AddressingMode addressingMode, IFlag flag,
+            Action<byte, AddressingMode, IProcessorState> action, params string[] aliases)
+            : this(mnemonic + flag.Name, (byte) (opcode + flag.Selector), addressingMode, action, aliases)
         {
             Flag = flag;
         }

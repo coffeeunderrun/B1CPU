@@ -6,7 +6,7 @@
 
         public int Selector { get; }
 
-        public Flag(string name, int selector = -1)
+        public Flag(string name, int selector)
         {
             Name = name;
             Selector = selector;

@@ -1,10 +1,11 @@
 ﻿using System.Text.RegularExpressions;
+using B1CPU.Assembler.Factory;
 
-namespace B1CPU.Assembler.Tokens.Types
+namespace B1CPU.Assembler.Tokens
 {
-    public abstract class TokenBase<T> : IToken where T : IToken
+    public abstract class Token<T> : IToken, ITokenMatch where T : IToken
     {
-        private readonly ITokenFactory _tokenFactory;
+        private readonly IFactory _factory;
 
         public string Content { get; }
 
@@ -14,9 +15,9 @@ namespace B1CPU.Assembler.Tokens.Types
 
         protected abstract Match TryMatch(string text);
 
-        protected TokenBase(ITokenFactory tokenFactory, string content = "", int row = 0, int column = 0)
+        protected Token(IFactory factory, string content, int row, int column)
         {
-            _tokenFactory = tokenFactory;
+            _factory = factory;
             Content = content;
             Row = row;
             Column = column;
@@ -29,7 +30,7 @@ namespace B1CPU.Assembler.Tokens.Types
             var match = TryMatch(text);
 
             if (match.Success)
-                token = _tokenFactory.Create<T>(match.Value, row, column);
+                token = _factory.Create<T>(match.Value, row, column);
 
             return match.Success;
         }

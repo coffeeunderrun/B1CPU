@@ -1,13 +1,14 @@
 ﻿using System.Text.RegularExpressions;
+using B1CPU.Assembler.Factory;
 
 namespace B1CPU.Assembler.Tokens.Types
 {
-    public sealed class HexToken : TokenBase<HexToken>
+    public sealed class HexToken : Token<HexToken>
     {
         private static readonly Regex TokenRegex = new Regex(@"^(\$|0x)[a-f0-9]+", RegexOptions.IgnoreCase);
 
-        public HexToken(ITokenFactory tokenFactory, string content = "", int row = 0, int column = 0)
-            : base(tokenFactory, content, row, column)
+        public HexToken(IFactory factory, string content, int row, int column)
+            : base(factory, content, row, column)
         {
         }
 

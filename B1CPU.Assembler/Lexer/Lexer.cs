@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using B1CPU.Assembler.Tokens;
+using B1CPU.Core.Repository;
 using Castle.Core.Logging;
 
 namespace B1CPU.Assembler.Lexer
@@ -7,15 +8,17 @@ namespace B1CPU.Assembler.Lexer
     public sealed class Lexer : ILexer
     {
         private readonly ILogger _logger;
-        private readonly ITokenRepository _tokenRepository;
+        private readonly IRepository<IToken> _tokens;
+        private readonly IRepository<ITokenMatch> _tokenMatches;
 
         private int _row;
         private int _column;
 
-        public Lexer(ILogger logger, ITokenRepository tokenRepository)
+        public Lexer(ILogger logger, IRepository<IToken> tokens, IRepository<ITokenMatch> tokenMatches)
         {
             _logger = logger;
-            _tokenRepository = tokenRepository;
+            _tokens = tokens;
+            _tokenMatches = tokenMatches;
         }
 
         public bool Tokenize(string input)
@@ -25,6 +28,8 @@ namespace B1CPU.Assembler.Lexer
                 _logger.Error($"Input file does not exist. {input}");
                 return false;
             }
+
+            _tokens.Clear();
 
             using (var reader = File.OpenText(input))
             {
@@ -44,7 +49,7 @@ namespace B1CPU.Assembler.Lexer
                             continue;
                         }
 
-                        // Ignore part of the line we already parsed
+                        // Parse what has yet to be parsed
                         var remainder = line.Substring(_column);
                         if (!ParseLine(remainder))
                             return false;
@@ -57,13 +62,15 @@ namespace B1CPU.Assembler.Lexer
 
         private bool ParseLine(string line)
         {
-            foreach (var tokenType in _tokenRepository.TokenTypes)
+            // Iterate through each token type until we have found a match
+            foreach (var tokenMatch in _tokenMatches)
             {
                 IToken token;
-                if (!tokenType.IsMatch(line, _row, _column + 1, out token))
+                if (!tokenMatch.IsMatch(line, _row, _column + 1, out token))
                     continue;
 
-                _tokenRepository.Add(token);
+                // Return our matched token
+                _tokens.Add(token);
                 _column += token.Content.Length;
 
                 return true;

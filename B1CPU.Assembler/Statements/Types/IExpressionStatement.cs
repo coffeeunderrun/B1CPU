@@ -1,4 +1,4 @@
-﻿namespace B1CPU.Assembler.Statements.Types.Expressions
+﻿namespace B1CPU.Assembler.Statements.Types
 {
     public interface IExpressionStatement
     {
